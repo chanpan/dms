@@ -4,11 +4,25 @@
   "description": "app1",
   "main": "main.js",
   "scripts": {
+    "release": "build",
     "start": "electron .",
     "pack:osx": "./node_modules/.bin/electron-packager . $npm_package_productName --app-version=$npm_package_version --version=0.36.7 --out=builds --ignore='^/builds$' --platform=darwin --arch=x64 --sign='Developer ID Application: My Company Ltd (ABCDEFGH10)' --icon=icon.icns --overwrite",
     "pack:win": "./node_modules/.bin/electron-packager . $npm_package_productName --app-version=$npm_package_version --version=1.0.0--out=builds --ignore='^/builds$' --platform=win32 --arch=ia32 --version-string.CompanyName='DAMASAC' --version-string.LegalCopyright='Copyright (C) 2016 DAMASAC' --version-string.FileDescription=$npm_package_productName --version-string.OriginalFilename='app1.exe' --version-string.InternalName=$npm_package_productName --version-string.ProductName=$npm_package_productName --version-string.ProductVersion=$npm_package_version --asar=true --icon=logo.ico --overwrite"
   },
-  "repository": "",
+  "build": {
+    "appId": "010717",
+    "productName": "app1",
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "chanpan",
+        "repo": "dms",
+        "token": "d956de80a254b76b727148e126f5ab41c3eb5aec"
+      }
+    ]
+    
+  },
+  "repository": "https://github.com/chanpan/dms",
   "keywords": [
     "Electron",
     "quick",
@@ -22,8 +36,9 @@
   },
   "license": "C",
   "devDependencies": {
-    "electron-installer-squirrel-windows": "^1.3.0",
-    "electron-packager": "^8.7.2",
-    "electron-prebuilt": "^1.4.13"
+    "electron-builder": "^19.17.0"
+  },
+  "dependencies": {
+    "electron-auto-updater": "^1.0.0"
   }
 }
